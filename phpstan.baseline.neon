@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method HumanDirect\\\\LocaleBundle\\\\DependencyInjection\\\\HumanDirectLocaleExtension\\:\\:load\\(\\) throws checked exception Exception but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: src/DependencyInjection/HumanDirectLocaleExtension.php
+
+		-
+			message: "#^Method HumanDirect\\\\LocaleBundle\\\\Templating\\\\Helper\\\\LocaleSwitchHelper\\:\\:renderSwitch\\(\\) throws checked exception Twig\\\\Error\\\\LoaderError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: src/Templating/Helper/LocaleSwitchHelper.php
+
+		-
+			message: "#^Method HumanDirect\\\\LocaleBundle\\\\Templating\\\\Helper\\\\LocaleSwitchHelper\\:\\:renderSwitch\\(\\) throws checked exception Twig\\\\Error\\\\RuntimeError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: src/Templating/Helper/LocaleSwitchHelper.php
+
+		-
+			message: "#^Method HumanDirect\\\\LocaleBundle\\\\Templating\\\\Helper\\\\LocaleSwitchHelper\\:\\:renderSwitch\\(\\) throws checked exception Twig\\\\Error\\\\SyntaxError but it's missing from the PHPDoc @throws tag\\.$#"
+			count: 1
+			path: src/Templating/Helper/LocaleSwitchHelper.php

@@ -1,0 +1,12 @@
+includes:
+	- ../../phpstan.test.neon
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    paths:
+        - tests
+    checkAlwaysTrueCheckTypeFunctionCall: false
+    checkAlwaysTrueInstanceof: false
+    checkAlwaysTrueStrictComparison: false
+    bootstrapFiles:
+        - vendor/bin/.phpunit/phpunit/vendor/autoload.php

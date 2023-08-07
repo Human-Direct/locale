@@ -1,0 +1,66 @@
+{
+    "name": "humandirect/locale-bundle",
+    "version": "1.0",
+    "description": "A slim bundle for switching languages",
+    "keywords": [
+        "locale",
+        "bundle",
+        "multilanguage",
+        "router",
+        "browser",
+        "cookie",
+        "language"
+    ],
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Human Direct",
+            "homepage": "https://www.humandirect.eu"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.1",
+        "ext-intl": "*",
+        "psr/log": "^1.1",
+        "symfony/framework-bundle": "6.3.*",
+        "symfony/intl": "6.3.*",
+        "symfony/templating": "6.3.*",
+        "symfony/validator": "6.3.*",
+        "symfony/yaml": "6.3.*",
+        "webmozart/assert": "^1.10"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "6.3.*",
+        "twig/twig": "^2.13 || ^3.0",
+        "phpstan/phpstan-symfony": "^1.0",
+        "phpstan/phpstan-doctrine": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpstan/phpstan-webmozart-assert": "^1.0",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/extension-installer": "^1.1"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "HumanDirect\\LocaleBundle\\": "src/"
+        },
+        "files": [
+            "HumanDirectLocaleBundle.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HumanDirect\\LocaleBundle\\Tests\\": "tests/"
+        }
+    }
+}

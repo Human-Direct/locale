@@ -1,0 +1,12 @@
+includes:
+    - ../../phpstan.neon
+    - phpstan.baseline.neon
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    resultCachePath: %tmpDir%/resultCache-src.php
+    paths:
+        - src
+    checkAlwaysTrueCheckTypeFunctionCall: false
+    checkAlwaysTrueInstanceof: false
+    checkAlwaysTrueStrictComparison: false

@@ -1,0 +1,89 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $guessingOrder: '%human_direct_locale.guessing_order%'
+            $defaultKernelLocale: '%kernel.default_locale%'
+            $disableVaryHeader: '%human_direct_locale.disable_vary_header%'
+            $guessingExcludedPattern: '%human_direct_locale.guessing_excluded_pattern%'
+            $queryParameterName: '%human_direct_locale.query.parameter_name%'
+            $localeCookieName: '%human_direct_locale.cookie.name%'
+            $sessionKey: '%human_direct_locale.session.variable%'
+            $regionSeparator: '%human_direct_locale.subdomain.region_separator%'
+            $allowedLocales: '%human_direct_locale.allowed_locales%'
+            $tldLocaleMap: '%human_direct_locale.topleveldomain.locale_map%'
+            $domainLocaleMap: '%human_direct_locale.domain.locale_map%'
+            $showCurrentLocale: '%human_direct_locale.switcher.show_current_locale%'
+
+    HumanDirect\LocaleBundle\:
+        resource: '../../*'
+        exclude: '../../{DependencyInjection,Resources,tests}'
+
+    HumanDirect\LocaleBundle\Cookie\LocaleCookie:
+        arguments:
+            - '%human_direct_locale.cookie.name%'
+            - '%human_direct_locale.cookie.ttl%'
+            - '%human_direct_locale.cookie.path%'
+            - '%human_direct_locale.cookie.domain%'
+            - '%human_direct_locale.cookie.secure%'
+            - '%human_direct_locale.cookie.httpOnly%'
+            - '%human_direct_locale.cookie.set_on_change%'
+
+    HumanDirect\LocaleBundle\LocaleGuesser\QueryLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: query }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\RouterLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: router }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\BrowserLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: browser }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\CookieLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: cookie }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\SessionLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: session }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\SubdomainLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: subdomain }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\TopLevelDomainLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: topleveldomain }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\DomainLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: domain }
+
+    HumanDirect\LocaleBundle\LocaleGuesser\HeaderLocaleGuesser:
+        tags:
+            - { name: human_direct_locale.guesser, alias: header }
+
+    HumanDirect\LocaleBundle\Validator\LocaleValidator:
+        tags:
+            - { name: validator.constraint_validator, alias: human_direct_locale.validator.locale }
+
+    HumanDirect\LocaleBundle\Validator\LocaleAllowedValidator:
+        arguments:
+            $allowedLocalesProvider: '@HumanDirect\LocaleBundle\LocaleInformation\AllowedLocalesProvider'
+            $strictMode: '%human_direct_locale.strict_mode%'
+        tags:
+            - {
+                  name: validator.constraint_validator,
+                  alias: human_direct_locale.validator.locale_allowed,
+              }
+
+    HumanDirect\LocaleBundle\Templating\Helper\LocaleSwitchHelper:
+        tags:
+            - { name: templating.helper, alias: switch }
+
+    HumanDirect\LocaleBundle\EventListener\LocaleListener:
+        arguments:
+            $bestLocaleMatcher: '@?HumanDirect\LocaleBundle\Matcher\BestLocaleMatcherInterface'
