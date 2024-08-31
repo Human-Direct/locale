@@ -22,7 +22,7 @@
     "require": {
         "php": "^8.2",
         "ext-intl": "*",
-        "psr/log": "^1.1",
+        "psr/log": "^1.1|^2.0",
         "symfony/framework-bundle": "^7.0",
         "symfony/intl": "^7.0",
         "symfony/templating": "^7.0",
